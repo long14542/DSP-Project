@@ -34,3 +34,19 @@ fig.show()
 fig = px.imshow(mfcc2, origin='lower', aspect='auto')
 fig.update_layout(title='MFCC - Audio 2', xaxis_title='Time', yaxis_title='MFCC Coefficients')
 fig.show()
+
+X = []
+X.append(mfcc1)
+X.append(mfcc2)
+y = ['no', 'yes']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create an instance of the SVM classifier with a linear kernel
+clf = SVC(kernel='linear')
+
+# Train the SVM classifier on the training data
+clf.fit(X_train, y_train)
+
+
