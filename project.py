@@ -27,10 +27,9 @@ mel_spec2 = librosa.feature.melspectrogram(S=spectrogram2, sr=sr2)
 
 # Compute MFCCs
 mfcc1 = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec1), n_mfcc=13)
-mfcc2 = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec2), n_mfcc=13)
-mfcc1 = np.zeros((13, 111))
-mfcc1[:, :] = mfcc2[:, :111]
-print(len(mfcc1))
+mfcc2_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec2), n_mfcc=13)
+mfcc2 = np.zeros((13, 104))
+mfcc2[:, :] = mfcc2_original[:, :104]
 
 # Plot MFCCs using Plotly
 fig = px.imshow(mfcc1, origin='lower', aspect='auto')
