@@ -2,6 +2,9 @@ import librosa
 import librosa.display
 import plotly.express as px
 import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 audio_path1 = 'D:/20.27_-4-thg-6.wav'
 audio_path2 = 'D:/20.27_-4-thg-6_2_.wav'
@@ -24,9 +27,9 @@ mel_spec2 = librosa.feature.melspectrogram(S=spectrogram2, sr=sr2)
 
 # Compute MFCCs
 mfcc1 = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec1), n_mfcc=13)
-mfcc2 = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec2), n_mfcc=13)
-mfcc1 = np.zeros((13, 111))
-mfcc1[:, :] = mfcc2[:, :111]
+mfcc2_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec2), n_mfcc=13)
+mfcc2 = np.zeros((13, 104))
+mfcc2[:, :] = mfcc2_original[:, :104]
 
 # Plot MFCCs using Plotly
 fig = px.imshow(mfcc1, origin='lower', aspect='auto')
@@ -52,3 +55,22 @@ clf = SVC(kernel='linear')
 
 # Train the SVM classifier on the training data
 clf.fit(X_train, y_train)
+
+# Predict the labels for the testing data
+y_pred = clf.predict(X_test)
+
+# Compute accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Compute precision
+precision = precision_score(y_test, y_pred)
+print("Precision:", precision)
+
+# Compute recall
+recall = recall_score(y_test, y_pred)
+print("Recall:", recall)
+
+# Compute F1 score
+f1 = f1_score(y_test, y_pred)
+print("F1 score:", f1)
