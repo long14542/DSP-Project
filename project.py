@@ -120,7 +120,7 @@ fig.show()
 # Combine the MFCCs into a single array
 X = np.concatenate([mfcc1, mfcc2, mfcc3, mfcc4, mfcc5, mfcc6, mfcc7, mfcc8, mfcc9, mfcc10, mfcc11, mfcc12, mfcc13, mfcc14, mfcc15, mfcc16, mfcc17, mfcc18, mfcc19, mfcc20], axis=0)
 
-# Create a target array indicating the class labels (e.g., 0 for audio 1, 1 for audio 2)
+# Create a target array indicating the class labels (e.g., 0 for "Co", 1 for "Khong")
 y = np.concatenate([np.zeros(mfcc1.shape[0]), np.ones(mfcc2.shape[0]), np.zeros(mfcc3.shape[0]), np.ones(mfcc4.shape[0]), np.zeros(mfcc5.shape[0]), np.ones(mfcc6.shape[0]), np.zeros(mfcc7.shape[0]), np.ones(mfcc8.shape[0]), np.zeros(mfcc9.shape[0]), np.ones(mfcc10.shape[0]), np.zeros(mfcc11.shape[0]), np.ones(mfcc12.shape[0]), np.zeros(mfcc13.shape[0]), np.ones(mfcc14.shape[0]), np.zeros(mfcc15.shape[0]), np.ones(mfcc16.shape[0]), np.zeros(mfcc17.shape[0]), np.ones(mfcc18.shape[0]), np.zeros(mfcc19.shape[0]), np.ones(mfcc20.shape[0])], axis=0)
 print(y.shape)
 
