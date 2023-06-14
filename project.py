@@ -173,6 +173,12 @@ def Apply_the_classifier(audio_path):
     # Print the predicted label
     print("Predicted Label:", label)
 
-# Example usage:
-new_audio_path = "/Users/admin/Documents/GitHub/DSP-Project/recordings/20.27_-4-thg-6.wav" # Replace with the actual path to the new audio sample
-Apply_the_classifier(new_audio_path)
+# Apply the classifier to predict the label:
+n=0
+while (n!=2):
+    print("1. Choose audio file path")
+    print("2. Exit")
+    n = int(input("Enter your choice: "))
+    if n==1:
+        path = input("Enter your audio path: ")
+        Apply_the_classifier(path)
