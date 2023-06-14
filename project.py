@@ -27,116 +27,40 @@ audio_path18 = '/Users/admin/Documents/GitHub/DSP-Project/recordings/khong9.wav'
 audio_path19 = '/Users/admin/Documents/GitHub/DSP-Project/recordings/co10.wav'
 audio_path20 = '/Users/admin/Documents/GitHub/DSP-Project/recordings/khong10.wav'
 
-# Load audio files
-audio1, sr1 = librosa.load(audio_path1)
-audio2, sr2 = librosa.load(audio_path2)
-audio3, sr3 = librosa.load(audio_path3)
-audio4, sr4 = librosa.load(audio_path4)
-audio5, sr5 = librosa.load(audio_path5)
-audio6, sr6 = librosa.load(audio_path6)
-audio7, sr7 = librosa.load(audio_path7)
-audio8, sr8 = librosa.load(audio_path8)
-audio9, sr9 = librosa.load(audio_path9)
-audio10, sr10 = librosa.load(audio_path10)
-audio11, sr11 = librosa.load(audio_path11)
-audio12, sr12 = librosa.load(audio_path12)
-audio13, sr13 = librosa.load(audio_path13)
-audio14, sr14 = librosa.load(audio_path14)
-audio15, sr15 = librosa.load(audio_path15)
-audio16, sr16 = librosa.load(audio_path16)
-audio17, sr17 = librosa.load(audio_path17)
-audio18, sr18 = librosa.load(audio_path18)
-audio19, sr19 = librosa.load(audio_path19)
-audio20, sr20 = librosa.load(audio_path20)
+def Extracted_MFCC_features(audio_path):
+    # Load audio files
+    audio, sr = librosa.load(audio_path)
+    # Compute the Short-Time Fourier Transform (STFT)
+    stft = librosa.stft(audio)
+    # Convert to spectrogram
+    spectrogram = np.abs(stft)
+    # Compute Mel spectrogram
+    mel_spec = librosa.feature.melspectrogram(S=spectrogram, sr=sr)
+    # Compute MFCCs
+    mfcc = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec), n_mfcc=13)
+    return mfcc
 
-# Compute the Short-Time Fourier Transform (STFT)
-stft1 = librosa.stft(audio1)
-stft2 = librosa.stft(audio2)
-stft3 = librosa.stft(audio3)
-stft4 = librosa.stft(audio4)
-stft5 = librosa.stft(audio5)
-stft6 = librosa.stft(audio6)
-stft7 = librosa.stft(audio7)
-stft8 = librosa.stft(audio8)
-stft9 = librosa.stft(audio9)
-stft10 = librosa.stft(audio10)
-stft11 = librosa.stft(audio11)
-stft12 = librosa.stft(audio12)
-stft13 = librosa.stft(audio13)
-stft14 = librosa.stft(audio14)
-stft15 = librosa.stft(audio15)
-stft16 = librosa.stft(audio16)
-stft17 = librosa.stft(audio17)
-stft18 = librosa.stft(audio18)
-stft19 = librosa.stft(audio19)
-stft20 = librosa.stft(audio20)
-
-# Convert to spectrogram
-spectrogram1 = np.abs(stft1)
-spectrogram2 = np.abs(stft2)
-spectrogram3 = np.abs(stft3)
-spectrogram4 = np.abs(stft4)
-spectrogram5 = np.abs(stft5)
-spectrogram6 = np.abs(stft6)
-spectrogram7 = np.abs(stft7)
-spectrogram8 = np.abs(stft8)
-spectrogram9 = np.abs(stft9)
-spectrogram10 = np.abs(stft10)
-spectrogram11 = np.abs(stft11)
-spectrogram12 = np.abs(stft12)
-spectrogram13 = np.abs(stft13)
-spectrogram14 = np.abs(stft14)
-spectrogram15 = np.abs(stft15)
-spectrogram16 = np.abs(stft16)
-spectrogram17 = np.abs(stft17)
-spectrogram18 = np.abs(stft18)
-spectrogram19 = np.abs(stft19)
-spectrogram20 = np.abs(stft20)
-
-
-# Compute Mel spectrogram
-mel_spec1 = librosa.feature.melspectrogram(S=spectrogram1, sr=sr1)
-mel_spec2 = librosa.feature.melspectrogram(S=spectrogram2, sr=sr2)
-mel_spec3 = librosa.feature.melspectrogram(S=spectrogram3, sr=sr3)
-mel_spec4 = librosa.feature.melspectrogram(S=spectrogram4, sr=sr4)
-mel_spec5 = librosa.feature.melspectrogram(S=spectrogram5, sr=sr5)
-mel_spec6 = librosa.feature.melspectrogram(S=spectrogram6, sr=sr6)
-mel_spec7 = librosa.feature.melspectrogram(S=spectrogram7, sr=sr7)
-mel_spec8 = librosa.feature.melspectrogram(S=spectrogram8, sr=sr8)
-mel_spec9 = librosa.feature.melspectrogram(S=spectrogram9, sr=sr9)
-mel_spec10 = librosa.feature.melspectrogram(S=spectrogram10, sr=sr10)
-mel_spec11 = librosa.feature.melspectrogram(S=spectrogram11, sr=sr11)
-mel_spec12 = librosa.feature.melspectrogram(S=spectrogram12, sr=sr12)
-mel_spec13 = librosa.feature.melspectrogram(S=spectrogram13, sr=sr13)
-mel_spec14 = librosa.feature.melspectrogram(S=spectrogram14, sr=sr14)
-mel_spec15 = librosa.feature.melspectrogram(S=spectrogram15, sr=sr15)
-mel_spec16 = librosa.feature.melspectrogram(S=spectrogram16, sr=sr16)
-mel_spec17 = librosa.feature.melspectrogram(S=spectrogram17, sr=sr17)
-mel_spec18 = librosa.feature.melspectrogram(S=spectrogram18, sr=sr18)
-mel_spec19 = librosa.feature.melspectrogram(S=spectrogram19, sr=sr19)
-mel_spec20 = librosa.feature.melspectrogram(S=spectrogram20, sr=sr20)
-
-# Compute MFCCs
-mfcc1_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec1), n_mfcc=13)
-mfcc2_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec2), n_mfcc=13)
-mfcc3_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec3), n_mfcc=13)
-mfcc4_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec4), n_mfcc=13)
-mfcc5_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec5), n_mfcc=13)
-mfcc6_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec6), n_mfcc=13)
-mfcc7_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec7), n_mfcc=13)
-mfcc8_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec8), n_mfcc=13)
-mfcc9_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec9), n_mfcc=13)
-mfcc10_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec10), n_mfcc=13)
-mfcc11_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec11), n_mfcc=13)
-mfcc12_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec12), n_mfcc=13)
-mfcc13_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec13), n_mfcc=13)
-mfcc14_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec14), n_mfcc=13)
-mfcc15_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec15), n_mfcc=13)
-mfcc16_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec16), n_mfcc=13)
-mfcc17_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec17), n_mfcc=13)
-mfcc18_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec18), n_mfcc=13)
-mfcc19_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec19), n_mfcc=13)
-mfcc20_original = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec20), n_mfcc=13)
+# Extracted MFCC features
+mfcc1_original = Extracted_MFCC_features(audio_path1)
+mfcc2_original = Extracted_MFCC_features(audio_path2)
+mfcc3_original = Extracted_MFCC_features(audio_path3)
+mfcc4_original = Extracted_MFCC_features(audio_path4)
+mfcc5_original = Extracted_MFCC_features(audio_path5)
+mfcc6_original = Extracted_MFCC_features(audio_path6)
+mfcc7_original = Extracted_MFCC_features(audio_path7)
+mfcc8_original = Extracted_MFCC_features(audio_path8)
+mfcc9_original = Extracted_MFCC_features(audio_path9)
+mfcc10_original = Extracted_MFCC_features(audio_path10)
+mfcc11_original = Extracted_MFCC_features(audio_path11)
+mfcc12_original = Extracted_MFCC_features(audio_path12)
+mfcc13_original = Extracted_MFCC_features(audio_path13)
+mfcc14_original = Extracted_MFCC_features(audio_path14)
+mfcc15_original = Extracted_MFCC_features(audio_path15)
+mfcc16_original = Extracted_MFCC_features(audio_path16)
+mfcc17_original = Extracted_MFCC_features(audio_path17)
+mfcc18_original = Extracted_MFCC_features(audio_path18)
+mfcc19_original = Extracted_MFCC_features(audio_path19)
+mfcc20_original = Extracted_MFCC_features(audio_path20)
 
 # Determine the maximum number of frames among the two arrays(the number of frams depends on how long the recording is)
 max_frames = 1000
@@ -228,26 +152,23 @@ print("Recall:", recall)
 f1 = f1_score(y_train, y_pred)
 print("F1 score:", f1)
 
+def Apply_the_classifier(audio_path):
+    # Extracted MFCC features
+    mfcc = Extracted_MFCC_features(audio_path)
+    #Pad mfcc1 so it has same features as trained SVC 
+    mfcc = Pad(max_frames,mfcc)
+
+    # Predict the label for the new instance
+    predicted_label = clf.predict(mfcc)[0]
+
+    # Convert the predicted label to "Co" or "Khong"
+    if predicted_label == 0: label = "Co"
+    elif predicted_label == 1: label = "Khong"
+    else: label = "Unknow"
+
+    # Print the predicted label
+    print("Predicted Label:", label)
+
 # Example usage:
-new_audio_path = "/Users/admin/Documents/GitHub/DSP-Project/recordings/20.27_-4-thg-6_2_.wav" # Replace with the actual path to the new audio sample
-
-# Extracted MFCC features
-audio1, sr1 = librosa.load(new_audio_path)
-stft1 = librosa.stft(audio1)
-spectrogram1 = np.abs(stft1)
-mel_spec1 = librosa.feature.melspectrogram(S=spectrogram1, sr=sr1)
-mfcc1 = librosa.feature.mfcc(S=librosa.power_to_db(mel_spec1), n_mfcc=13)
-
-#Pad mfcc1 so it has same features as trained SVC 
-mfcc1 = Pad(max_frames,mfcc1)
-
-# Reshape the reduced features if necessary (assuming a single instance)
-new_features_reshaped = mfcc1.reshape(1, -1)
-# Predict the label for the new instance
-predicted_label = clf.predict(mfcc1)[0]
-
-# Convert the predicted label to "Yes" or "No"
-label = "Khong" if predicted_label == 1 else "Co"
-
-# Print the predicted label
-print("Predicted Label:", label)
+new_audio_path = "/Users/admin/Documents/GitHub/DSP-Project/recordings/20.27_-4-thg-6.wav" # Replace with the actual path to the new audio sample
+Apply_the_classifier(new_audio_path)
