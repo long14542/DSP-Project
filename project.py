@@ -96,10 +96,8 @@ mfcc20= Pad(max_frames, mfcc20_original)
 # Plot 2 first audio
 # Load audio files
 audio1, sr = librosa.load(audio_path1, sr=None)
-# Convert to spectrogram
-audio_spec1 = np.abs(audio1)
 plt.figure()
-plt.plot(audio_spec1)
+plt.plot(audio1)
 plt.xlabel("Time")
 plt.ylabel("Amplitude")
 plt.title("Audio 1 Signal (""Co"")")
@@ -107,10 +105,8 @@ plt.show()
 
 # Load audio files
 audio2, sr = librosa.load(audio_path2, sr=None)
-# Convert to spectrogram
-audio_spec2 = np.abs(audio2)
 plt.figure()
-plt.plot(audio_spec2)
+plt.plot(audio2)
 plt.xlabel("Time")
 plt.ylabel("Amplitude")
 plt.title("Audio 2 Signal (""Khong"")")
