@@ -159,7 +159,7 @@ print("F1 score:", f1)
 def Apply_the_classifier(audio_path):
     # Extracted MFCC features
     mfcc = Extracted_MFCC_features(audio_path)
-    #Pad mfcc1 so it has same features as trained SVC 
+    #Pad mfcc1 so it has same features as trained SVM 
     mfcc = Pad(max_frames,mfcc)
 
     # Predict the label for the new instance
