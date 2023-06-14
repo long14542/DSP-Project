@@ -5,6 +5,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import matplotlib.pyplot as plt
 
 audio_path1 = '/Users/admin/Documents/GitHub/DSP-Project/recordings/co1.wav'
 audio_path2 = '/Users/admin/Documents/GitHub/DSP-Project/recordings/khong1.wav'
@@ -92,29 +93,36 @@ mfcc18= Pad(max_frames, mfcc18_original)
 mfcc19= Pad(max_frames, mfcc19_original)
 mfcc20= Pad(max_frames, mfcc20_original)
 
-# Plot 6 first MFCCs using Plotly
+# Plot 2 first audio
+# Load audio files
+audio1, sr = librosa.load(audio_path1, sr=None)
+# Convert to spectrogram
+audio_spec1 = np.abs(audio1)
+plt.figure()
+plt.plot(audio_spec1)
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.title("Audio 1 Signal (""Co"")")
+plt.show()
+
+# Load audio files
+audio2, sr = librosa.load(audio_path2, sr=None)
+# Convert to spectrogram
+audio_spec2 = np.abs(audio2)
+plt.figure()
+plt.plot(audio_spec2)
+plt.xlabel("Time")
+plt.ylabel("Amplitude")
+plt.title("Audio 2 Signal (""Khong"")")
+plt.show()
+
+# Plot 2 first MFCCs using Plotly
 fig = px.imshow(mfcc1_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 1', xaxis_title='Time', yaxis_title='MFCC Coefficients')
+fig.update_layout(title='MFCC - Audio 1 ("Co")', xaxis_title='Time', yaxis_title='MFCC Coefficients')
 fig.show()
 
 fig = px.imshow(mfcc2_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 2', xaxis_title='Time', yaxis_title='MFCC Coefficients')
-fig.show()
-
-fig = px.imshow(mfcc3_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 3', xaxis_title='Time', yaxis_title='MFCC Coefficients')
-fig.show()
-
-fig = px.imshow(mfcc4_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 4', xaxis_title='Time', yaxis_title='MFCC Coefficients')
-fig.show()
-
-fig = px.imshow(mfcc5_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 5', xaxis_title='Time', yaxis_title='MFCC Coefficients')
-fig.show()
-
-fig = px.imshow(mfcc6_original, origin='lower', aspect='auto')
-fig.update_layout(title='MFCC - Audio 6', xaxis_title='Time', yaxis_title='MFCC Coefficients')
+fig.update_layout(title='MFCC - Audio 2 ("Khong")', xaxis_title='Time', yaxis_title='MFCC Coefficients')
 fig.show()
 
 # Combine the MFCCs into a single array
